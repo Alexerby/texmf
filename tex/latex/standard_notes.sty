@@ -1,0 +1,252 @@
+\usepackage{amsmath, amsfonts, amsthm, amssymb, mathtools}
+\usepackage{parskip}
+\usepackage{mdframed}
+\usepackage[most]{tcolorbox}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{pgfplots}
+\usepackage{venndiagram}
+\usepackage{tikz}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz-3dplot}
+\usepackage{tkz-euclide}
+\usepackage{appendix}
+
+\usetikzlibrary{
+  calc,
+  shadings,
+  arrows,
+  arrows.meta,
+  bbox,
+  positioning,
+  shadows.blur
+}
+
+
+
+\RequirePackage{parts/math}
+
+\usepgfplotslibrary{fillbetween}
+
+\tcbuselibrary{theorems}
+\pgfplotsset{
+compat=1.18,
+width=7cm
+}
+\tcbuselibrary{skins}
+
+
+\setlist{topsep=1.5em, itemsep=1em} % Change spacing between lists
+
+%================================
+% COLORS
+%================================
+\definecolor{mytheorembg}{HTML}{F2F2F9}
+\definecolor{mytheoremfr}{HTML}{00007B}
+\definecolor{myb}{RGB}{45, 111, 177}
+\definecolor{mdefbg}{HTML}{0e3a3e}
+\definecolor{mexbg}{HTML}{3e0e1b}
+
+
+% %================================
+% % DEFINITION BOX
+% %================================
+% \newtcolorbox{mdef}[1][]{%
+%   colframe=mdefbg,    % Color of the frame (left line)
+%   colback=white,      % Background color
+%   title=\textbf{Definition:} \ifstrempty{#1}{}{ #1},  % Add a colon and title if #1 is not empty
+%   rounded corners,
+%   fontupper=\linespread{1.5}\selectfont,
+%   fontlower=\linespread{0.8}\selectfont
+% }
+%
+% % Create a counter for definitions and reset by section
+% \newcounter{definition}[section]  % Define the counter, reset by section
+% \renewcommand{\thedefinition}{\thesection.\arabic{definition}}  % Format for numbering
+%
+% % Define the tcolorbox for the definition
+% \newtcbtheorem[auto counter, number within=section]{definition}{Definition}
+% {colframe=gray!50!black, fonttitle=\bfseries, 
+%    enhanced, breakable,
+%    colback=white, 
+%    title={\textbf{Definition \thedefinition:}}}
+% {}
+
+%================================
+% EXAMPLE BOX
+%================================
+% \newtcolorbox{mex}[1][]{%
+%   colframe=mexbg,    % Color of the frame (left line)
+%   colback=white,     % Background color
+%   title=Example,  % Set title to "Definition"
+%   rounded corners,
+%   fontupper=\linespread{1.5}\selectfont,
+%   fontlower=\linespread{0.8}\selectfont
+%   #1                 % Pass additional options
+% }
+
+% \newtcolorbox{mex}[1][]{%
+%   colframe=mexbg,    % Color of the frame (left line)
+%   colback=white,     % Background color
+%   title={Example\IfValueT{#1}{: #1}},  % Default "Example", adds ": {optional}" if given
+%   rounded corners,
+%   fontupper=\linespread{1.5}\selectfont,
+%   fontlower=\linespread{0.8}\selectfont
+% }
+
+
+% %================================
+% % PROOF ENV
+% %================================
+% \newenvironment{myproof}[1][\proofname]{%
+% 	\proof[\bfseries Proof. #1: ]%
+% }{\endproof}
+
+
+
+% %================================
+% % THEOREM BOX
+% %================================
+% \newcommand{\thm}[2]{\begin{Theorem}{#1}{}#2\end{Theorem}}
+% \newtcbtheorem[number within=section]{Theorem}{Theorem}
+% {%
+% 	enhanced,
+% 	breakable,
+% 	colback = mytheorembg,
+% 	frame hidden,
+% 	boxrule = 0sp,
+% 	borderline west = {2pt}{0pt}{mytheoremfr},
+% 	sharp corners,
+% 	detach title,
+% 	before upper = \tcbtitle\par\smallskip,
+% 	coltitle = mytheoremfr,
+% 	fonttitle = \bfseries\sffamily,
+% 	description font = \mdseries,
+% 	separator sign none,
+% 	segmentation style={solid, mytheoremfr},
+% }
+% {th}
+
+% %================================
+% % NOTE BOX
+% %================================
+% \newtcolorbox{note}[1][]{%
+% 	enhanced jigsaw,
+% 	colback=gray!20!white,%
+% 	colframe=gray!80!black,
+% 	size=small,
+% 	boxrule=1pt,
+%   title=Note,
+%   sharp corners,
+%   fontupper=\linespread{1.5}\selectfont,
+%   fontlower=\linespread{0.8}\selectfont
+%   #1                 % Pass additional options
+% }
+
+% %================================
+% % QUESTION BOX
+% %================================
+% \makeatletter
+% \newtcolorbox[auto counter, number within=section]{question}[2][]{%
+%     before skip=0.5in,
+%     enhanced,
+%     breakable,
+%     colback=white,
+%     colframe=myb!80!black,
+%     attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+%     fonttitle=\bfseries,
+%     title={\IfValueTF{#2}{#2}{Question}}, % Default to "Question" if #2 is empty
+%     boxed title size=title,
+%     boxed title style={%
+%         sharp corners,
+%         rounded corners=northwest,
+%         colback=tcbcolframe,
+%         boxrule=0pt,
+%     },
+%     underlay boxed title={%
+%         \path[fill=tcbcolframe] (title.south west)--(title.south east)
+%         to[out=0, in=180] ([xshift=5mm]title.east)--
+%         (title.center-|frame.east)
+%         [rounded corners=\kvtcb@arc] |-
+%         (frame.north) -| cycle;
+%     },
+%     #1
+% }
+% \makeatother
+
+
+
+% %================================
+% % COMMANDS - ENVIRONMENTS
+% %================================
+%
+% % Proof
+% \newcommand{\pf}[2]{\begin{myproof}[#1]#2\end{myproof}}
+%
+% % Solution
+% \newcommand{\sol}[2]{\begin{mysolution}[#1]#2\end{mysolution}%
+% }
+%
+% % Example
+% \newcommand{\ex}[2]{\begin{mex}[#1]#2\end{mex}}
+%
+% % Question
+% \newcommand{\qs}[2]{\begin{question}{#1}{}#2\end{question}}
+%
+% % Note
+% \newcommand{\nt}[1]{\begin{note}#1\end{note}}
+%
+% % Definition
+% \newcommand{\df}[2]{\begin{mdef}[#1]#2\end{mdef}}
+%
+%
+% \newcommand{\getCurrentSectionNumber}{\getcurrentref{section}}
+%
+% % Solution
+% \newenvironment{mysolution}[1][Solution]{%
+%     \noindent\textbf{\bfseries #1: } 
+% }{%
+%     \par 
+% }
+
+% %================================
+% % COMMANDS - MATH
+% %================================
+% \newcommand{\Lagr}{\mathcal{L}}
+%
+% %================================
+% % Preferences microeconomics
+% % URL:
+% % https://www.oeconomist.com/blogs/daniel/wp-content/uploads/2011/04/pref_symbols.pdf
+% %================================
+\newcommand{\strictpref}{\succ}  % Succeeds
+% \newcommand{\prefeq}{\succeq}  % Succeeds or equivalent
+\newcommand{\pref}{\succcurlyeq} % Succeeds or equal to
+\newcommand{\indiff}{\sim} % Indifference
+\newcommand{\lesspref}{\prec} % Less preferred
+%
+%
+% %================================
+% % COMMANDS - RENEW
+% %================================
+% % \renewcommand{\theappendix}{Appendix \Alph{section}}
+%
+%
+% %================================
+% % THEOREM - ENVIRONMENTS
+% %================================
+%
+% % Define theorem
+% \newtheorem{theorem}{Theorem}[section]
+%
+% % Define Example
+% \newtheorem{exmp}{Example}[section]
+%
+%
+% %================================
+% % DECLARATION - MATH OPERATORS
+% %================================
+% \DeclareMathOperator{\Span}{span}
+% \DeclareMathOperator{\Det}{det}
+% \DeclareMathOperator{\Exp}{exp}

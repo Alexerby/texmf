@@ -1,0 +1,256 @@
+\usepackage{amsmath, amsfonts, amsthm, amssymb, mathtools}
+
+
+%===================================================
+% COLORS
+%===================================================
+
+% Math Environments
+\definecolor{theoremcolor}{HTML}{8B0000}  
+\definecolor{lemmacolor}{HTML}{008B8B}  
+\definecolor{exampleBg}{HTML}{8B0000}  
+\definecolor{resultcolor}{HTML}{3e0e1b}
+\definecolor{definition}{HTML}{1F2839}
+\definecolor{proofcolor}{HTML}{1F2839}
+\definecolor{propositioncolor}{HTML}{1F2839}
+
+
+%===================================================
+% DECLARATION - MATH OPERATORS
+%===================================================
+
+% LinAlg
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Det}{det}
+\DeclareMathOperator{\Dim}{dim}
+\DeclareMathOperator{\Null}{Null}
+\DeclareMathOperator{\Rank}{rank}
+
+% PrTheory
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\EV}{\mathbb{E}}
+\DeclareMathOperator{\plim}{plim}
+
+% General
+\DeclareMathOperator{\Exp}{exp}
+
+
+%===================================================
+% ENVIRONMENTS
+%===================================================
+
+% STYLES
+\newtheoremstyle{theoremStyle} % Custom style for "Theorem"
+  {5pt}    % Space above
+  {10pt}   % Space below
+  {\itshape} % Body font (italic for theorem content)
+  {}       % Indent amount
+  {\color{theoremcolor}\bfseries} % Theorem head font (color + bold)
+  {.}      % Punctuation after theorem head
+  {1em}    % Space after theorem head
+  {}       % Theorem head spec
+
+\newtheoremstyle{lemmaStyle} % Custom style for "Theorem"
+  {5pt}    % Space above
+  {10pt}   % Space below
+  {\itshape} % Body font (italic for theorem content)
+  {}       % Indent amount
+  {\color{lemmacolor}\bfseries} % Theorem head font (color + bold)
+  {.}      % Punctuation after theorem head
+  {1em}    % Space after theorem head
+  {}       % Theorem head spec
+
+
+\newtheoremstyle{propositionStyle} % Custom style for "Theorem"
+  {5pt}    % Space above
+  {10pt}   % Space below
+  {\itshape} % Body font (italic for theorem content)
+  {}       % Indent amount
+  {\color{propositioncolor}\bfseries} % Theorem head font (color + bold)
+  {.}      % Punctuation after theorem head
+  {1em}    % Space after theorem head
+  {}       % Theorem head spec
+
+
+\newtheoremstyle{resultStyle} % Custom style for "Theorem"
+  {5pt}    % Space above
+  {10pt}   % Space below
+  {\itshape} % Body font (italic for theorem content)
+  {}       % Indent amount
+  {\color{resultcolor}\bfseries} % Theorem head font (color + bold)
+  {.}      % Punctuation after theorem head
+  {1em}    % Space after theorem head
+  {}       % Theorem head spec
+
+
+% STYLES
+\newtheoremstyle{proofStyle} % Custom style for "Theorem"
+  {5pt}    % Space above
+  {10pt}   % Space below
+  {\itshape} % Body font (italic for theorem content)
+  {}       % Indent amount
+  {\color{proofcolor}\bfseries} % Theorem head font (color + bold)
+  {.}      % Punctuation after theorem head
+  {1em}    % Space after theorem head
+  {}       % Theorem head spec
+
+
+%================================
+% Theorem 
+%================================
+
+\theoremstyle{theoremStyle}
+\newtheorem{thm}{Theorem}[section]
+\surroundwithmdframed[%
+  leftline=true, % Enable left border
+  linewidth=2pt, % Thickness of the left border
+  linecolor=theoremcolor, % Color of the border (black in this case)
+  backgroundcolor={theoremcolor!10}, % Background color
+  skipabove=10pt, % Space above
+  skipbelow=10pt, % Space below
+  topline=false, % No top border
+  bottomline=false, % No bottom border
+  rightline=false % No right border
+]{thm}
+
+
+%================================
+% Proof
+%================================
+% \theoremstyle{plain}
+\theoremstyle{proofStyle}
+\newtheorem{prf}{\textup{Proof}}[section]
+
+
+% \surroundwithmdframed[%
+%   leftline=true, % Enable left border
+%   linewidth=2pt, % Thickness of the left border
+%   linecolor=proofcolor, % Color of the border (black in this case)
+%   % backgroundcolor={resultcolor!10}, % Background color
+%   skipabove=10pt, % Space above
+%   skipbelow=10pt, % Space below
+%   topline=false, % No top border
+%   bottomline=false, % No bottom border
+%   rightline=false % No right border
+% ]{proof}
+
+% Subproof
+\newenvironment{subproof}[1][\proofname]{%
+  \renewcommand{\qedsymbol}{$\blacksquare$}%
+  \begin{proof}[#1]%
+}{%
+  \end{proof}%
+}
+
+
+
+
+%================================
+% Proposition
+%================================
+\theoremstyle{propositionStyle}
+\newtheorem{prop}{Proposition}[section]
+\surroundwithmdframed[%
+  leftline=true, % Enable left border
+  linewidth=2pt, % Thickness of the left border
+  linecolor=propositioncolor, % Color of the border (black in this case)
+  backgroundcolor={propositioncolor!10}, % Background color
+  skipabove=10pt, % Space above
+  skipbelow=10pt, % Space below
+  topline=false, % No top border
+  bottomline=false, % No bottom border
+  rightline=false % No right border
+]{prop}
+
+
+%================================
+% Example
+%================================
+\newtcolorbox{example}[2][]{%
+  colframe=exampleBg,    % Color of the frame (left line)
+  colback=white,     % Background color
+  title={Example\IfValueT{#2}{: #2}},  % Default "Example", adds ": {optional}" if given
+  breakable = true,
+  rounded corners,
+  fontupper=\linespread{1.5}\selectfont,
+  fontlower=\linespread{0.8}\selectfont,
+  overlay={%
+          \ifcase\tcbsegmentstate
+          % 0 = Box contains only an upper part
+          \or%
+          % 1 = Box contains an upper and a lower part
+          %\path[draw=red] (segmentation.west)--(frame.south east);
+          \else%
+          % 2 = Box contains only a lower part
+          %\path[draw=red] (frame.north west)--(frame.south east);
+          \fi%
+      },
+  #1,
+}
+
+
+
+%================================
+% Definition
+%================================
+\newtheorem{dfn}{Definition}[section]
+
+
+%================================
+% Corollary
+%================================
+\newtheorem{cor}{Corollary}[section]
+
+
+%================================
+% Principle
+%================================
+\newtheorem{princ}{Principle}[section]
+
+
+%================================
+% Definition
+%================================
+\newtcolorbox{definition}[2][]
+{
+  colframe = definition,
+  colback  = white,
+  coltitle = white,
+  title    = Definition: #2,
+  #1,
+}
+
+%================================
+% Result
+%================================
+\theoremstyle{resultStyle}
+\newtheorem{result}{Result}[section]
+\surroundwithmdframed[%
+  leftline=true, % Enable left border
+  linewidth=2pt, % Thickness of the left border
+  linecolor=resultcolor, % Color of the border (black in this case)
+  backgroundcolor={resultcolor!10}, % Background color
+  skipabove=10pt, % Space above
+  skipbelow=10pt, % Space below
+  topline=false, % No top border
+  bottomline=false, % No bottom border
+  rightline=false % No right border
+]{result}
+
+%================================
+% Lemma
+%================================
+\theoremstyle{lemmaStyle}
+\newtheorem{lem}{Lemma}[section]
+\surroundwithmdframed[%
+  leftline=true, % Enable left border
+  linewidth=2pt, % Thickness of the left border
+  linecolor=lemmacolor, % Color of the border (black in this case)
+  backgroundcolor={lemmacolor!10}, % Background color
+  skipabove=10pt, % Space above
+  skipbelow=10pt, % Space below
+  topline=false, % No top border
+  bottomline=false, % No bottom border
+  rightline=false % No right border
+]{lem}

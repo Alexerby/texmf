@@ -1,0 +1,146 @@
+\usepackage{amsmath, amsfonts, amsthm, amssymb, mathtools}
+\usepackage{parskip}
+\usepackage{mdframed}
+\usepackage[most]{tcolorbox}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{pgfplots}
+\usepackage{venndiagram}
+\usepackage{tikz}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz-3dplot}
+\usepackage{tkz-euclide}
+\usepackage{appendix}
+\usepackage{xpatch}
+\usepackage{xparse} % Add this line to the preamble for the IfBlankTF macro
+
+
+
+% Subsections as letters (3A, 7D,...,etc)
+\renewcommand{\thesubsection}{\thesection\Alph{subsection}}
+
+% Tikz
+\usetikzlibrary{
+  calc,
+  shadings,
+  arrows,
+  arrows.meta,
+  bbox,
+  positioning,
+  shadows.blur
+}
+\pgfplotsset{compat=1.18}
+
+
+% Includes
+\RequirePackage{parts/math}
+
+%===================================================
+% COLORS
+%===================================================
+
+% Problem
+\definecolor{problem}{HTML}{1F2839}
+\definecolor{subproblem}{HTML}{B69D74}
+\definecolor{probtext}{HTML}{F5F5EF}
+
+
+\definecolor{cmarkcolor}{HTML}{33B144}
+\definecolor{xmarkcolor}{HTML}{D04647}
+
+
+
+%===================================================
+% QUESTION BOX
+%===================================================
+\NewDocumentCommand{\problem}{m o}{%
+  \setcounter{section}{#1} % Set the section counter manually to the specified number
+  \setcounter{subsection}{0} % Reset subsection counter to 0 when a new problem starts
+  \IfNoValueTF{#2} % Check if #2 (the second argument) is empty
+    {\addcontentsline{toc}{section}{Problem #1}} % If #2 is empty, no colon
+    {\addcontentsline{toc}{section}{Problem #1: #2}} % If #2 is not empty, include colon
+
+  \begin{tcolorbox}[%
+    colframe=problem,
+    colback=problem,
+    rounded corners,
+    coltext=probtext, % text color
+    width=\linewidth,%
+    height=\dimexpr0.7cm\relax, 
+    halign=center,
+    valign=center,
+    fontupper=\large\bfseries,
+    arc=2mm, auto outer arc,
+  ]
+    Problem #1\IfNoValueTF{#2}{\relax}{: #2}
+  \end{tcolorbox}
+}
+\numberwithin{equation}{section}
+
+%===================================================
+% SUBQUESTION BOX
+%===================================================
+% \makeatletter
+% \NewDocumentCommand{\subproblem}{o}{%
+%   \refstepcounter{subsection} % Increment the subsection counter automatically
+%   \IfNoValueTF{#1} % Check if the optional argument is provided
+%     {\addcontentsline{toc}{subsection}{Subproblem \thesubsection}} % If no optional argument, add to TOC
+%     {\addcontentsline{toc}{subsection}{Subproblem \thesubsection: #1}} % If optional argument is given, add to TOC with the title
+%
+%   \begin{tcolorbox}[%
+%     colframe=subproblem,
+%     colback=subproblem,
+%     rounded corners,
+%     coltext=probtext, % text color
+%     width=\linewidth,%
+%     height=0.6cm, 
+%     halign=center,
+%     valign=center,
+%     fontupper=\normalsize,
+%     arc=2mm, auto outer arc,
+%   ]
+%     \textbf{Subproblem \thesubsection}\IfNoValueTF{#1}{\relax}{: #1}
+%   \end{tcolorbox}
+% }
+% \makeatother
+
+\makeatletter
+\NewDocumentCommand{\subproblem}{o}{%
+  \refstepcounter{subsection} % Increment the subsection counter automatically
+  \IfNoValueTF{#1} % Check if the optional argument is provided
+    {\addcontentsline{toc}{subsection}{Subproblem \thesection.\arabic{subsection}}} % If no optional argument, add to TOC
+    {\addcontentsline{toc}{subsection}{Subproblem \thesection.\arabic{subsection}: #1}} % If optional argument is given, add to TOC with the title
+
+  \begin{tcolorbox}[%
+    colframe=subproblem,
+    colback=subproblem,
+    rounded corners,
+    coltext=probtext, % text color
+    width=\linewidth,%
+    height=0.6cm,
+    halign=center,
+    valign=center,
+    fontupper=\normalsize,
+    arc=2mm, auto outer arc,
+  ]
+    \textbf{Subproblem \thesection.\arabic{subsection}}\IfNoValueTF{#1}{\relax}{: #1}
+  \end{tcolorbox}
+}
+\makeatother
+
+
+
+%================================
+% Checkmark and X box
+%================================
+\newcommand{\tikzxmark}{% Creates a X mark
+\tikz[scale=0.23] {
+    \draw[line width=0.7,line cap=round, color=xmarkcolor] (0,0) to [bend left=6] (1,1);
+    \draw[line width=0.7,line cap=round, color=xmarkcolor] (0.2,0.95) to [bend right=3] (0.8,0.05);
+}}
+\newcommand{\tikzcmark}{% Creates a checkbox
+\tikz[scale=0.23] {
+    \draw[line width=0.7,line cap=round, color=cmarkcolor] (0.25,0) to [bend left=10] (1,1);
+    \draw[line width=0.8,line cap=round, color=cmarkcolor] (0,0.35) to [bend right=1] (0.23,0);
+}}

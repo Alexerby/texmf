@@ -12,6 +12,9 @@
 \usepackage{tikz-3dplot}
 \usepackage{tkz-euclide}
 \usepackage{appendix}
+\usepackage{xpatch}
+\usepackage{xparse} % Add this line to the preamble for the IfBlankTF macro
+
 
 \usetikzlibrary{
   calc,
@@ -23,9 +26,9 @@
   shadows.blur
 }
 
+% Packages
+\RequirePackage{general_math}
 
-
-\RequirePackage{parts/math}
 
 \usepgfplotslibrary{fillbetween}
 
@@ -36,6 +39,7 @@ width=7cm
 }
 \tcbuselibrary{skins}
 
+\xpatchcmd{\section}{\normalfont\Large\bfseries}{\sectionbox}{}{\PatchFailed}
 
 \setlist{topsep=1.5em, itemsep=1em} % Change spacing between lists
 
@@ -47,6 +51,10 @@ width=7cm
 \definecolor{myb}{RGB}{45, 111, 177}
 \definecolor{mdefbg}{HTML}{0e3a3e}
 \definecolor{mexbg}{HTML}{3e0e1b}
+
+% Problem colors
+\definecolor{problem}{HTML}{0e3a3e}
+\definecolor{subproblem}{HTML}{8B0000}
 
 
 %================================
@@ -176,6 +184,58 @@ width=7cm
 \makeatother
 
 
+%================================
+% NEW QUESTION BOX
+%================================
+\makeatletter
+\NewDocumentCommand{\problem}{m o}{%
+  \setcounter{section}{#1} % Set the section counter manually to the specified number
+  \IfNoValueTF{#2} % Check if #2 (the second argument) is empty
+    {\addcontentsline{toc}{section}{Problem #1}} % If #2 is empty, no colon
+    {\addcontentsline{toc}{section}{Problem #1: #2}} % If #2 is not empty, include colon
+
+  \begin{tcolorbox}[%
+    colframe=problem,
+    colback=problem,
+    rounded corners,
+    coltext=white, % text color
+    width=\linewidth,%
+    height=0.7cm, 
+    halign=center,
+    valign=center,
+    fontupper=\large\bfseries,
+    arc=0mm, auto outer arc,
+  ]
+    Problem #1\IfNoValueTF{#2}{\relax}{: #2}
+  \end{tcolorbox}
+}
+\makeatother
+\numberwithin{equation}{section}
+
+% Subproblem
+\makeatletter
+\NewDocumentCommand{\subproblem}{o}{%
+  \refstepcounter{subsection} % Increment the subsection counter automatically
+  \IfNoValueTF{#1} % Check if the optional argument is provided
+    {\addcontentsline{toc}{subsection}{Subproblem \thesubsection}} % If no optional argument, add to TOC
+    {\addcontentsline{toc}{subsection}{Subproblem \thesubsection: #1}} % If optional argument is given, add to TOC with the title
+
+  \begin{tcolorbox}[%
+    colframe=subproblem,
+    colback=subproblem,
+    rounded corners,
+    coltext=white, % text color
+    width=\linewidth,%
+    height=0.6cm, 
+    halign=center,
+    valign=center,
+    fontupper=\normalsize,
+    arc=0mm, auto outer arc,
+  ]
+    \textbf{Subproblem \thesubsection}\IfNoValueTF{#1}{\relax}{: #1}
+  \end{tcolorbox}
+}
+\makeatother
 
 %================================
 % COMMANDS - ENVIRONMENTS
@@ -233,20 +293,7 @@ width=7cm
 % \renewcommand{\theappendix}{Appendix \Alph{section}}
 
 
-%================================
-% THEOREM - ENVIRONMENTS
-%================================
-
-% Define theorem
-\newtheorem{theorem}{Theorem}[section]
 
 % Define Example
 \newtheorem{exmp}{Example}[section]
 
-
-%================================
-% DECLARATION - MATH OPERATORS
-%================================
-\DeclareMathOperator{\Span}{span}
-\DeclareMathOperator{\Det}{det}
-\DeclareMathOperator{\Exp}{exp}

@@ -25,7 +25,6 @@
 
 
 
-\RequirePackage{parts/math}
 
 \usepgfplotslibrary{fillbetween}
 
@@ -39,6 +38,8 @@ width=7cm
 
 \setlist{topsep=1.5em, itemsep=1em} % Change spacing between lists
 
+\RequirePackage{parts/math}
+
 %================================
 % COLORS
 %================================
@@ -49,29 +50,29 @@ width=7cm
 \definecolor{mexbg}{HTML}{3e0e1b}
 
 
-%================================
-% DEFINITION BOX
-%================================
-\newtcolorbox{mdef}[1][]{%
-  colframe=mdefbg,    % Color of the frame (left line)
-  colback=white,      % Background color
-  title=\textbf{Definition:} \ifstrempty{#1}{}{ #1},  % Add a colon and title if #1 is not empty
-  rounded corners,
-  fontupper=\linespread{1.5}\selectfont,
-  fontlower=\linespread{0.8}\selectfont
-}
+% %================================
+% % DEFINITION BOX
+% %================================
+% \newtcolorbox{mdef}[1][]{%
+%   colframe=mdefbg,    % Color of the frame (left line)
+%   colback=white,      % Background color
+%   title=\textbf{Definition:} \ifstrempty{#1}{}{ #1},  % Add a colon and title if #1 is not empty
+%   rounded corners,
+%   fontupper=\linespread{1.5}\selectfont,
+%   fontlower=\linespread{0.8}\selectfont
+% }
 
-% Create a counter for definitions and reset by section
-\newcounter{definition}[section]  % Define the counter, reset by section
-\renewcommand{\thedefinition}{\thesection.\arabic{definition}}  % Format for numbering
-
-% Define the tcolorbox for the definition
-\newtcbtheorem[auto counter, number within=section]{definition}{Definition}
-{colframe=gray!50!black, fonttitle=\bfseries, 
-   enhanced, breakable,
-   colback=white, 
-   title={\textbf{Definition \thedefinition:}}}
-{}
+% % Create a counter for definitions and reset by section
+% \newcounter{definition}[section]  % Define the counter, reset by section
+% \renewcommand{\thedefinition}{\thesection.\arabic{definition}}  % Format for numbering
+%
+% % Define the tcolorbox for the definition
+% \newtcbtheorem[auto counter, number within=section]{definition}{Definition}
+% {colframe=gray!50!black, fonttitle=\bfseries, 
+%    enhanced, breakable,
+%    colback=white, 
+%    title={\textbf{Definition \thedefinition:}}}
+% {}
 
 %================================
 % EXAMPLE BOX
@@ -105,28 +106,28 @@ width=7cm
 
 
 
-%================================
-% THEOREM BOX
-%================================
-\newcommand{\thm}[2]{\begin{Theorem}{#1}{}#2\end{Theorem}}
-\newtcbtheorem[number within=section]{Theorem}{Theorem}
-{%
-	enhanced,
-	breakable,
-	colback = mytheorembg,
-	frame hidden,
-	boxrule = 0sp,
-	borderline west = {2pt}{0pt}{mytheoremfr},
-	sharp corners,
-	detach title,
-	before upper = \tcbtitle\par\smallskip,
-	coltitle = mytheoremfr,
-	fonttitle = \bfseries\sffamily,
-	description font = \mdseries,
-	separator sign none,
-	segmentation style={solid, mytheoremfr},
-}
-{th}
+% %================================
+% % THEOREM BOX
+% %================================
+% \newcommand{\thm}[2]{\begin{Theorem}{#1}{}#2\end{Theorem}}
+% \newtcbtheorem[number within=section]{Theorem}{Theorem}
+% {%
+% 	enhanced,
+% 	breakable,
+% 	colback = mytheorembg,
+% 	frame hidden,
+% 	boxrule = 0sp,
+% 	borderline west = {2pt}{0pt}{mytheoremfr},
+% 	sharp corners,
+% 	detach title,
+% 	before upper = \tcbtitle\par\smallskip,
+% 	coltitle = mytheoremfr,
+% 	fonttitle = \bfseries\sffamily,
+% 	description font = \mdseries,
+% 	separator sign none,
+% 	segmentation style={solid, mytheoremfr},
+% }
+% {th}
 
 %================================
 % NOTE BOX
@@ -244,9 +245,3 @@ width=7cm
 \newtheorem{exmp}{Example}[section]
 
 
-%================================
-% DECLARATION - MATH OPERATORS
-%================================
-\DeclareMathOperator{\Span}{span}
-\DeclareMathOperator{\Det}{det}
-\DeclareMathOperator{\Exp}{exp}

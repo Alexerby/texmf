@@ -1,0 +1,54 @@
+\usepackage{amsthm}   % For theorem environments
+\usepackage{xcolor}    % For colored text
+
+%================================
+% CASE STYLE
+%================================
+
+\definecolor{casecolor}{HTML}{0e3a3e}  % Dark teal color for cases
+
+
+\newtheoremstyle{caseStyle} % Custom style for "Case"
+  {5pt}    % Space above
+  {10pt}   % Space below
+  {} % << Indents case body text
+  {}       % Indent amount (0 for the Case label itself)
+  {\color{casecolor}\bfseries} % Theorem head font (color + bold)
+  {:}      % Punctuation after case head
+  {1em}    % Space after theorem head
+  {}       % Theorem head spec
+
+\theoremstyle{caseStyle}  
+\newtheorem{case}{Case}
+\newtheorem{subcase}{Case}
+\numberwithin{subcase}{case}
+
+%================================
+% THEOREM STYLE
+%================================
+
+\definecolor{theoremcolor}{HTML}{8B0000}  % Dark red for Theorem titles
+
+\newtheoremstyle{theoremStyle} % Custom style for "Theorem"
+  {5pt}    % Space above
+  {10pt}   % Space below
+  {\itshape} % Body font (italic for theorem content)
+  {}       % Indent amount
+  {\color{theoremcolor}\bfseries} % Theorem head font (color + bold)
+  {.}      % Punctuation after theorem head
+  {1em}    % Space after theorem head
+  {}       % Theorem head spec
+
+\theoremstyle{theoremStyle}
+\newtheorem{theorem}{Theorem}[section]
+
+%================================
+% DECLARATION - MATH OPERATORS
+%================================
+
+\DeclareMathOperator{\Exp}{exp}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Det}{det}
+\DeclareMathOperator{\Dim}{dim}
+\DeclareMathOperator{\Null}{Null}
+\DeclareMathOperator{\Rank}{Rank}
