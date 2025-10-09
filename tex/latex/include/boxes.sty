@@ -1,0 +1,114 @@
+
+\definecolor{definition}{HTML}{1F2839}
+\definecolor{stepcolor}{HTML}{10371B}
+
+%================================
+% EXERCISE BOX
+%================================
+\newtcolorbox{exercise}[1]{%
+  breakable,
+  colframe=mdefbg,    % Color of the frame (left line)
+  colback=white,      % Background color
+  title=\textbf{Exercise:} #1,
+  rounded corners,
+  fontupper=\linespread{1.5}\selectfont,
+  fontlower=\linespread{0.8}\selectfont
+}
+
+
+%================================
+% DERIVATION BOX
+%================================
+\newtcolorbox{derivation}[1][]{%
+  breakable,
+  colframe=black,   % plain black frame
+  colback=white,    % white background
+  coltitle=white,   % black title text
+  title=\textbf{Derivation:} #1,
+  fonttitle=\bfseries,
+  enhanced,
+}
+
+
+%================================
+% CHATGPT RESPONSE BOX
+%================================
+\definecolor{chatgptDark}{HTML}{10A37F}
+\definecolor{chatgptLight}{HTML}{19F6B1}
+\definecolor{chatgptBg}{HTML}{F0FDFB}
+
+\newtcolorbox{chatgpt}[1][]{%
+  breakable,
+  colback=chatgptBg,
+  colframe=chatgptDark,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=\textbf{ChatGPT Response:} #1,
+  enhanced,
+}
+
+
+%================================
+% CHATGPT PROMPT BOX
+%================================
+\newtcolorbox{prompt}[1][]{%
+  breakable,
+  colback=chatgptDark!10, 
+  colframe=chatgptDark,
+  coltitle=white,
+  fonttitle=\bfseries,
+  title=\textbf{ChatGPT Prompt:} #1,
+  enhanced,
+}
+
+%================================
+% OBSERVATION BOX
+%================================
+\newtcolorbox{observation}[1][]{%
+  breakable,
+  colframe=orange!80!black,
+  colback=orange!10,
+  coltitle=white,
+  title=\textbf{Observation:} #1,
+  fonttitle=\bfseries,
+  enhanced,
+}
+
+%================================
+% STEP BOX
+%================================
+\newtcolorbox{step}[1][]{%
+  breakable,
+  colframe=stepcolor!70!black,
+  colback=stepcolor!10,
+  coltitle=white,
+  title=\textbf{Step:} #1,
+  fonttitle=\bfseries,
+  enhanced,
+}
+
+%================================
+% TIP BOX
+%================================
+\newtcolorbox{tip}[1][]{%
+  breakable,
+  colframe=red!70!black,
+  colback=red!10,
+  coltitle=white,
+  title=\textbf{Tip:} #1,
+  fonttitle=\bfseries,
+  enhanced,
+}
+
+%================================
+% DEFINITION BOX
+%================================
+\newtcolorbox{definition}[1][]{%
+  breakable,
+  colframe=blue!70!black,
+  colback=blue!10,
+  coltitle=white,
+  title=\textbf{Definition:} #1,
+  fonttitle=\bfseries,
+  enhanced,
+}

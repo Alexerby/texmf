@@ -10,7 +10,6 @@
 \definecolor{lemmacolor}{HTML}{008B8B}  
 \definecolor{exampleBg}{HTML}{8B0000}  
 \definecolor{resultcolor}{HTML}{3e0e1b}
-\definecolor{definition}{HTML}{1F2839}
 \definecolor{proofcolor}{HTML}{1F2839}
 \definecolor{propositioncolor}{HTML}{1F2839}
 
@@ -29,11 +28,13 @@
 % PrTheory
 \DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\Var}{Var}
-\DeclareMathOperator{\EV}{\mathbb{E}}
+\DeclareMathOperator{\EV}{\mathbb{E}} % Expected Value
+\DeclareMathOperator{\V}{\mathbb{V}} % Variance
 \DeclareMathOperator{\plim}{plim}
 
 % General
 \DeclareMathOperator{\Exp}{exp}
+\DeclareMathOperator{\sign}{sign}
 
 
 %===================================================
@@ -118,9 +119,26 @@
 %================================
 % Proof
 %================================
-% \theoremstyle{plain}
-\theoremstyle{proofStyle}
-\newtheorem{prf}{\textup{Proof}}[section]
+\newmdenv[
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  leftline=true,
+  linewidth=1pt,
+  linecolor=black,
+  skipabove=\topsep,
+  skipbelow=\topsep
+]{proofbox}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+
+% Redefine proof environment
+\renewenvironment{proof}[1][Proof]{%
+  \begin{proofbox}\noindent\textit{#1. }\ignorespaces%
+}{%
+  \hfill$\square$\end{proofbox}%
+}
 
 
 % \surroundwithmdframed[%
@@ -208,18 +226,6 @@
 %================================
 \newtheorem{princ}{Principle}[section]
 
-
-%================================
-% Definition
-%================================
-\newtcolorbox{definition}[2][]
-{
-  colframe = definition,
-  colback  = white,
-  coltitle = white,
-  title    = Definition: #2,
-  #1,
-}
 
 %================================
 % Result

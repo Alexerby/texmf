@@ -7,11 +7,12 @@
 \usepackage{setspace}
 \usepackage{pgfplots}
 \usepackage{venndiagram}
-\usepackage{tikz}
 \usepackage[shortlabels]{enumitem}
+\usepackage{appendix}
+
+\usepackage{tikz}
 \usepackage{tikz-3dplot}
 \usepackage{tkz-euclide}
-\usepackage{appendix}
 
 \usetikzlibrary{
   calc,
@@ -26,6 +27,7 @@
 
 
 \RequirePackage{parts/math}
+\RequirePackage{include/boxes}
 
 \usepgfplotslibrary{fillbetween}
 
@@ -38,6 +40,14 @@ width=7cm
 
 
 \setlist{topsep=1.5em, itemsep=1em} % Change spacing between lists
+\setlist{itemsep=0pt, parsep=0pt, topsep=6pt}
+
+%================================
+% TITLE
+%================================
+\usepackage{titling}
+\setlength{\droptitle}{-6em} % move title up
+
 
 %================================
 % COLORS
@@ -49,32 +59,7 @@ width=7cm
 \definecolor{mexbg}{HTML}{3e0e1b}
 
 
-%================================
-% EXERCISE BOX
-%================================
-\newtcolorbox{exercise}[1]{%
-  breakable,
-  colframe=mdefbg,    % Color of the frame (left line)
-  colback=white,      % Background color
-  title=\textbf{Exercise:} #1,
-  rounded corners,
-  fontupper=\linespread{1.5}\selectfont,
-  fontlower=\linespread{0.8}\selectfont
-}
 
-
-%================================
-% EXAMPLE BOX
-%================================
-\newtcolorbox{example}[1]{%
-  breakable,
-  colframe=#ff0000,    % Color of the frame (left line)
-  colback=white,      % Background color
-  title=\textbf{Example:} #1,
-  rounded corners,
-  fontupper=\linespread{1.5}\selectfont,
-  fontlower=\linespread{0.8}\selectfont
-}
 
 
 \newcommand{\strictpref}{\succ}  % Succeeds
