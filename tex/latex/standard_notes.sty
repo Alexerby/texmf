@@ -14,6 +14,10 @@
 \usepackage{tikz-3dplot}
 \usepackage{tkz-euclide}
 
+\usepackage[linkcolor=blue, colorlinks=true]{hyperref}
+
+\usepackage[left=0.5in, right=0.5in, top=0.6in, bottom=0.6in]{geometry}
+
 \usetikzlibrary{
   calc,
   shadings,
@@ -46,7 +50,21 @@ width=7cm
 % TITLE
 %================================
 \usepackage{titling}
-\setlength{\droptitle}{-6em} % move title up
+\setlength{\droptitle}{-2em} % move title up
+
+\usepackage{titlesec}
+
+% --- Section ---
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{1.0ex plus .2ex}
+
+% --- Subsection ---
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{2.5ex plus 1ex minus .2ex}{0.8ex plus .2ex}
+
+% --- Subsubsection ---
+\titleformat{\subsubsection}{\small\bfseries}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{1.8ex plus 1ex minus .2ex}{0.5ex plus .2ex}
 
 
 %================================
