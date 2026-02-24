@@ -24,6 +24,7 @@
 \DeclareMathOperator{\Dim}{dim}
 \DeclareMathOperator{\Null}{Null}
 \DeclareMathOperator{\Rank}{rank}
+\DeclareMathOperator{\Col}{col} % Column space
 
 % PrTheory
 \DeclareMathOperator{\Cov}{Cov}
@@ -42,65 +43,64 @@
 %===================================================
 
 % STYLES
-\newtheoremstyle{theoremStyle} % Custom style for "Theorem"
-  {5pt}    % Space above
-  {10pt}   % Space below
-  {\itshape} % Body font (italic for theorem content)
-  {}       % Indent amount
-  {\color{theoremcolor}\bfseries} % Theorem head font (color + bold)
-  {.}      % Punctuation after theorem head
-  {1em}    % Space after theorem head
-  {}       % Theorem head spec
+\newtheoremstyle{theoremStyle} 
+  {5pt}    
+  {10pt}   
+  {\normalfont} 
+  {}       
+  {\color{theoremcolor}\bfseries} 
+  {.}      
+  {1em}    
+  {}       
 
-\newtheoremstyle{lemmaStyle} % Custom style for "Theorem"
-  {5pt}    % Space above
-  {10pt}   % Space below
-  {\itshape} % Body font (italic for theorem content)
-  {}       % Indent amount
-  {\color{lemmacolor}\bfseries} % Theorem head font (color + bold)
-  {.}      % Punctuation after theorem head
-  {1em}    % Space after theorem head
-  {}       % Theorem head spec
-
-
-\newtheoremstyle{propositionStyle} % Custom style for "Theorem"
-  {5pt}    % Space above
-  {10pt}   % Space below
-  {\itshape} % Body font (italic for theorem content)
-  {}       % Indent amount
-  {\color{propositioncolor}\bfseries} % Theorem head font (color + bold)
-  {.}      % Punctuation after theorem head
-  {1em}    % Space after theorem head
-  {}       % Theorem head spec
+\newtheoremstyle{lemmaStyle}
+  {5pt}
+  {10pt}
+  {\itshape}
+  {}
+  {\color{lemmacolor}\bfseries}
+  {.}
+  {1em}
+  {}
 
 
-\newtheoremstyle{resultStyle} % Custom style for "Theorem"
-  {5pt}    % Space above
-  {10pt}   % Space below
-  {\itshape} % Body font (italic for theorem content)
-  {}       % Indent amount
-  {\color{resultcolor}\bfseries} % Theorem head font (color + bold)
-  {.}      % Punctuation after theorem head
-  {1em}    % Space after theorem head
-  {}       % Theorem head spec
+\newtheoremstyle{propositionStyle} 
+  {5pt}    
+  {10pt}   
+  {\itshape} 
+  {}       
+  {\color{propositioncolor}\bfseries} 
+  {.}      
+  {1em}    
+  {}       
 
 
-% STYLES
-\newtheoremstyle{proofStyle} % Custom style for "Theorem"
-  {5pt}    % Space above
-  {10pt}   % Space below
-  {\itshape} % Body font (italic for theorem content)
-  {}       % Indent amount
-  {\color{proofcolor}\bfseries} % Theorem head font (color + bold)
-  {.}      % Punctuation after theorem head
-  {1em}    % Space after theorem head
-  {}       % Theorem head spec
+\newtheoremstyle{resultStyle} 
+  {5pt}    
+  {10pt}   
+  {\itshape} 
+  {}       
+  {\color{resultcolor}\bfseries} 
+  {.}      
+  {1em}    
+  {}       
+
+
+
+\newtheoremstyle{proofStyle} 
+  {5pt}    
+  {10pt}   
+  {\itshape} 
+  {}       
+  {\color{proofcolor}\bfseries} 
+  {.}      
+  {1em}    
+  {}       
 
 
 %================================
 % Theorem 
 %================================
-
 \theoremstyle{theoremStyle}
 \newtheorem{thm}{Theorem}[section]
 \surroundwithmdframed[%

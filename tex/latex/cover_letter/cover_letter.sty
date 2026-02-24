@@ -1,0 +1,116 @@
+% ============================================================
+% cover_letter.sty — clean professional cover letter layout
+% ============================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cover_letter}[2025/11/09 Professional cover letter package]
+
+% ------------------------------------------------------------
+% Packages
+% ------------------------------------------------------------
+\RequirePackage{geometry}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{titlesec}
+\RequirePackage{titling}
+\RequirePackage{ragged2e}
+\RequirePackage{array}
+\RequirePackage{lmodern}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{microtype}
+\RequirePackage[colorlinks=true, urlcolor=blue]{hyperref}
+
+% ------------------------------------------------------------
+% Layout and typography
+% ------------------------------------------------------------
+\geometry{
+  a4paper,
+  left=2.8cm,
+  right=2.8cm,
+  top=2.8cm,
+  bottom=2.8cm
+}
+
+\linespread{1.05}
+\justifying
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.9em}
+
+% ------------------------------------------------------------
+% Colors
+% ------------------------------------------------------------
+\definecolor{RuleColor}{HTML}{C0C0C0}
+
+% ------------------------------------------------------------
+% Sender and recipient defaults
+% ------------------------------------------------------------
+\newcommand{\SenderName}{Firstname Lastname}
+\newcommand{\SenderStreet}{Streetname 11}
+\newcommand{\SenderZip}{0000 City}
+\newcommand{\SenderEmail}{example@hotmail.com}
+\newcommand{\SenderPhone}{+47 000 00 000}
+
+\newcommand{\RecipientName}{Company / Person}
+\newcommand{\RecipientStreet}{Streetname 14}
+\newcommand{\RecipientZip}{1111 City}
+
+\newcommand{\LetterDate}{\today}
+\newcommand{\LetterTitle}{JOB APPLICATION LETTER}
+
+% ------------------------------------------------------------
+% Setters
+% ------------------------------------------------------------
+\newcommand{\SetSender}[5]{%
+  \renewcommand{\SenderName}{#1}%
+  \renewcommand{\SenderStreet}{#2}%
+  \renewcommand{\SenderZip}{#3}%
+  \renewcommand{\SenderEmail}{#4}%
+  \renewcommand{\SenderPhone}{#5}%
+}
+\newcommand{\SetRecipient}[3]{%
+  \renewcommand{\RecipientName}{#1}%
+  \renewcommand{\RecipientStreet}{#2}%
+  \renewcommand{\RecipientZip}{#3}%
+}
+\newcommand{\SetDate}[1]{\renewcommand{\LetterDate}{#1}}
+\newcommand{\SetTitle}[1]{\renewcommand{\LetterTitle}{#1}}
+
+% ------------------------------------------------------------
+% Decorative elements
+% ------------------------------------------------------------
+\newcommand{\dotline}{\noindent\textcolor{RuleColor}{\makebox[\linewidth]{\dotfill}}}
+
+\newcommand{\SignatureLine}[1]{%
+  \vspace{1em}%
+  #1%
+}
+
+% ------------------------------------------------------------
+% Main macro
+% ------------------------------------------------------------
+\newcommand{\MakeCoverLetter}{%
+  \noindent
+  \begin{tabular*}{\textwidth}{@{}p{0.6\textwidth}@{\extracolsep{\fill}}r@{}}
+      \small
+      \SenderName \\
+      \SenderStreet \\
+      \SenderZip \\
+      \SenderEmail \\
+      \SenderPhone
+      &
+      \small \LetterDate
+  \end{tabular*}
+
+  \vspace{1.2em}
+
+  \small
+  \RecipientName\\
+  \RecipientStreet\\
+  \RecipientZip
+
+  \vspace{1.4em}
+
+  {\large\MakeUppercase{\LetterTitle}}\\[0.2em]
+  \textcolor{RuleColor}{\rule{\textwidth}{0.4pt}}
+  \vspace{0.6em}
+}
